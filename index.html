@@ -200,6 +200,11 @@ body.is-searching .search-clear { display: block; }
 .bar { height: 5px; background: var(--ink-3); border: 1px solid var(--rule); margin: 10px 0 8px; }
 .bar i { display: block; height: 100%; width: 0; background: var(--gold); transition: width .3s ease; }
 .toc-progress .count { font-family: var(--mono); font-size: 11px; color: var(--silver-2); letter-spacing: .1em; }
+.mobile-toc { display: none; margin: 28px 0 0; border: 1px solid var(--rule); background: var(--ink-2); }
+.mobile-toc summary { cursor: pointer; padding: 14px 18px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.mobile-toc nav { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--rule); }
+.mobile-toc a { padding: 12px 16px; border: 0; border-bottom: 1px solid var(--rule); color: var(--paper-dim); font-size: 13px; }
+.mobile-tier-note { display: none; }
 
 /* ── Sections ─────────────────────────────────────── */
 section.section { padding: 0 0 84px; scroll-margin-top: calc(var(--nav-h) + 24px); }
@@ -435,6 +440,7 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
   .layout { grid-template-columns: 1fr; gap: 0; }
   .toc { display: none; }
   .nav-links { display: none; }
+  .mobile-toc { display: block; }
   .eco-grid, .channels, .pillars { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 900px) {
@@ -446,6 +452,7 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
   .incl { grid-template-columns: 1fr; }
 }
 @media (max-width: 620px) {
+  body { background-attachment: scroll; }
   .wrap { padding: 0 16px; }
   .top-nav-inner { padding: 10px 16px; gap: 10px; }
   .brand { font-size: 16px; gap: 8px; }
@@ -455,6 +462,9 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
   .hero-wrap { padding: 46px 0 40px; }
   .principles, .jumpbar, .eco-grid, .channels, .pillars,
   .dir, .habits, .compare, .aar-grid { grid-template-columns: 1fr; }
+  .mobile-toc nav { grid-template-columns: 1fr; }
+  .table-scroll { display: none; }
+  .mobile-tier-note { display: block; margin-bottom: 20px; padding: 14px 16px; border: 1px solid var(--gold-line); background: var(--gold-soft); color: var(--paper-dim); font-size: 14px; }
   .block { padding: 24px 20px; }
   .dir a { padding: 15px 16px; }
   .dir span { font-size: 9px; }
@@ -527,9 +537,9 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
         <h2>Complete setup first</h2>
         <p>Access before content. If these three steps are not done, everything else in the membership is harder than it needs to be.</p>
         <ol class="setup-steps">
-          <li>Whitelist the Outlier email addresses</li>
-          <li>Join Discord, verify, and link Patreon</li>
-          <li>Find the current member schedule on Patreon</li>
+          <li>Open the current member schedule on Patreon</li>
+          <li>Connect Discord through Patreon, then verify</li>
+          <li>Add the Outlier email address to your contacts</li>
         </ol>
         <div class="setup-actions">
           <a href="#start" class="btn primary">Start setup →</a>
@@ -546,7 +556,7 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
       </div>
       <div class="jumpbar">
         <a class="jump" href="https://www.patreon.com/collection/421246?view=expanded" target="_blank" rel="noopener"><strong>Current schedule</strong><span>Patreon livestreams ↗</span></a>
-        <a class="jump" href="https://discord.gg/mj5qVEn3a7" target="_blank" rel="noopener"><strong>Join Discord</strong><span>Community + feedback ↗</span></a>
+        <a class="jump" href="https://support.patreon.com/hc/en-us/articles/212052266-Getting-Discord-access" target="_blank" rel="noopener"><strong>Connect Discord</strong><span>Patreon access guide ↗</span></a>
         <a class="jump" href="https://www.youtube.com/playlist?list=PLAFDZ3YyC4rRRsiqx8AGfxxLBf_EnHV_t" target="_blank" rel="noopener"><strong>Foundations</strong><span>Core education ↗</span></a>
         <a class="jump" href="#week-one"><strong>Week one checklist</strong><span>10 items</span></a>
       </div>
@@ -565,10 +575,9 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
       <li><a href="#tiers">What your tier includes</a></li>
       <li><a href="#week-one">Your first week</a></li>
       <li><a href="#month-one">Your first month</a></li>
-      <li><a href="#community">Getting the most from it</a></li>
       <li><a href="#faq">Common questions</a></li>
       <li><a href="#policies">Policies and disclaimer</a></li>
-      <li><a href="#directory">Every link in one place</a></li>
+      <li><a href="#directory">Member quick links</a></li>
     </ol>
     <div class="toc-progress">
       <span class="micro micro-dim">Week-one setup</span>
@@ -578,6 +587,19 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
   </aside>
 
   <div id="main">
+    <details class="mobile-toc">
+      <summary>Sections</summary>
+      <nav aria-label="Mobile contents">
+        <a href="#start">Get access</a>
+        <a href="#ecosystem">Where things live</a>
+        <a href="#tiers">Your tier</a>
+        <a href="#week-one">First week</a>
+        <a href="#month-one">First month</a>
+        <a href="#faq">Common questions</a>
+        <a href="#policies">Policies</a>
+        <a href="#directory">Quick links</a>
+      </nav>
+    </details>
     <p class="hit-note" id="hit-note" role="status"></p>
 
     <!-- ══ 01 START ═══════════════════════════════ -->
@@ -591,35 +613,36 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
       <div class="flow">
         <a class="flow-step" href="#step-a">
           <span class="k"><b>A</b><i>2 min</i></span>
-          <strong>Whitelist the emails</strong>
-          <span>So schedules and links reach you.</span>
+          <strong>Open Patreon</strong>
+          <span>Find the current member schedule.</span>
         </a>
         <div class="flow-arrow" aria-hidden="true">→</div>
         <a class="flow-step" href="#step-b">
           <span class="k"><b>B</b><i>5 min</i></span>
-          <strong>Join Discord, link Patreon</strong>
-          <span>Unlocks your paid channels.</span>
+          <strong>Connect Discord</strong>
+          <span>Link it through Patreon, then verify.</span>
         </a>
         <div class="flow-arrow" aria-hidden="true">→</div>
         <a class="flow-step" href="#step-c">
-          <span class="k"><b>C</b><i>2 min</i></span>
-          <strong>Find the schedule</strong>
-          <span>Tells you what is on this week.</span>
+          <span class="k"><b>C</b><i>1 min</i></span>
+          <strong>Save the email</strong>
+          <span>Keep schedules and links out of spam.</span>
         </a>
       </div>
       <div class="flow-out">
         <b>End state</b>
-        <span>Email reaching you, paid channels visible, and you know what your tier has access to this week.</span>
+        <span>You know what is happening this week, your paid Discord channels are visible, and member email can reach you.</span>
       </div>
 
       <div class="steps">
         <article class="step" id="step-a">
           <div class="step-key display">A</div>
           <div>
-            <h3>Whitelist the Outlier emails</h3>
-            <p>Add <strong>erik@outliertrading.io</strong> to your contacts and check Spam and Promotions for mail from Patreon and Outlier Trading. Patreon carries the weekly schedule and your tier's links — filtered mail means missed sessions.</p>
+            <h3>Open the latest member schedule</h3>
+            <p>Patreon is the source of truth for your membership, tier access, current schedule, session links, and recordings. The current schedule tells you what is happening this week and which links to use.</p>
+            <p>Paid livestreams are often unlisted on YouTube, so <strong>always enter member sessions through the links posted on Patreon</strong>.</p>
             <div class="linkrow">
-              <a class="mail" href="mailto:erik@outliertrading.io">erik@outliertrading.io</a>
+              <a href="https://www.patreon.com/collection/421246?view=expanded" target="_blank" rel="noopener">Current schedules and livestreams</a>
             </div>
           </div>
         </article>
@@ -627,20 +650,20 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
         <article class="step" id="step-b">
           <div class="step-key display">B</div>
           <div>
-            <h3>Join Discord and link Patreon</h3>
-            <p>Complete all five steps. Skipping the Patreon connection is the most common reason members cannot see paid channels.</p>
+            <h3>Connect Discord through Patreon</h3>
+            <p>Patreon controls your membership entitlement and synchronizes your Discord role. Complete these steps using the Discord account you want associated with your membership.</p>
             <figure class="shot">
               <img src="data:image/png;base64,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" alt="Discord sidebar showing the Verification category with the start-here channel">
               <figcaption>Look for this in Discord</figcaption>
             </figure>
             <ul class="ticks">
-              <li>Join the server using the invite link below.</li>
+              <li>In Patreon, open <strong>Settings → Connected Apps</strong> and connect Discord.</li>
+              <li>Join the Outlier server from Patreon or use the invite link below.</li>
               <li>Open the <strong>start-here</strong> channel and complete verification.</li>
               <li>Post an introduction in the format provided in that channel.</li>
-              <li>Connect your Patreon account to Discord.</li>
               <li>Confirm your paid member channels are visible.</li>
             </ul>
-            <p>Your Patreon connection must use the <strong>same Discord account</strong> you joined with, or your paid role will not apply.</p>
+            <p>If your channels do not appear, confirm Patreon is connected to the <strong>same Discord account</strong> you used to join the server, then disconnect and reconnect the integration.</p>
             <div class="linkrow">
               <a href="https://discord.gg/mj5qVEn3a7" target="_blank" rel="noopener">Join Discord</a>
               <a href="https://discord.com/channels/741540222843486290/741544881515921459" target="_blank" rel="noopener">Start Here channel</a>
@@ -663,11 +686,10 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
         <article class="step" id="step-c">
           <div class="step-key display">C</div>
           <div>
-            <h3>Find the latest member schedule</h3>
-            <p>The schedule post on Patreon is the most important post in the membership — it tells you what is happening this week, what your tier has access to, and which links to use.</p>
-            <p>Paid livestreams are often unlisted on YouTube, so <strong>always use the links posted on Patreon</strong>.</p>
+            <h3>Add the Outlier email to your contacts</h3>
+            <p>Add <strong>erik@outliertrading.io</strong> to your contacts and check Spam and Promotions for mail from Patreon and Outlier Trading. Patreon carries the weekly schedule and your tier's links — filtered mail means missed sessions.</p>
             <div class="linkrow">
-              <a href="https://www.patreon.com/collection/421246?view=expanded" target="_blank" rel="noopener">Current schedules and livestreams</a>
+              <a class="mail" href="mailto:erik@outliertrading.io">erik@outliertrading.io</a>
             </div>
           </div>
         </article>
@@ -680,68 +702,42 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
         <span class="num">02</span>
         <h2>Understand the ecosystem</h2>
       </div>
-      <p class="section-intro">Six platforms, each with a specific job. Knowing which one to open saves more time than anything else in this guide.</p>
+      <p class="section-intro">Three destinations cover almost everything. Patreon controls access and current information; Discord hosts the community; public learning supports your development.</p>
 
       <div class="eco-grid">
         <article class="eco">
-          <div class="eco-top"><h3>Patreon</h3><span class="chip gold">Access hub</span></div>
-          <p>Your gateway to member access. If you are looking for a link, a time, or a recording, start here.</p>
-          <ul class="tags"><li>Weekly schedules</li><li>Livestream links</li><li>Workshop prep</li><li>Announcements</li><li>Recordings</li><li>Tools</li></ul>
+          <div class="eco-top"><h3>Patreon</h3><span class="chip gold">Source of truth</span></div>
+          <p>Controls membership, billing, tier entitlement, Discord role synchronization, schedules, session links, and recordings. <strong>If access or timing is involved, start here.</strong></p>
+          <ul class="tags"><li>Membership</li><li>Weekly schedules</li><li>Session links</li><li>Announcements</li><li>Recordings</li></ul>
           <div class="linkrow">
-            <a href="https://www.patreon.com/outliertrading" target="_blank" rel="noopener">Home</a>
-            <a href="https://www.patreon.com/c/OutlierTrading/collections?vanity=OutlierTrading" target="_blank" rel="noopener">Collections</a>
-            <a href="https://www.patreon.com/collection/421246?view=expanded" target="_blank" rel="noopener">Livestreams</a>
-            <a href="https://www.patreon.com/collection/1318751?view=expanded" target="_blank" rel="noopener">Skill dev</a>
+            <a href="https://www.patreon.com/cw/OutlierTrading" target="_blank" rel="noopener">Home</a>
+            <a href="https://www.patreon.com/cw/OutlierTrading/collections" target="_blank" rel="noopener">Collections</a>
+            <a href="https://www.patreon.com/collection/421246?view=expanded" target="_blank" rel="noopener">Schedule</a>
           </div>
         </article>
 
         <article class="eco">
           <div class="eco-top"><h3>Discord</h3><span class="chip">Community</span></div>
-          <p>Where discussion, trade analysis, process feedback, questions, research, After-Action Reviews, and peer connection happen. Area access depends on your tier.</p>
+          <p>Where discussion, trade analysis, feedback, research, After-Action Reviews, and peer connection happen after Patreon synchronizes your role. Area access depends on your tier.</p>
           <ul class="tags"><li>Discussion</li><li>Trade analysis</li><li>Feedback</li><li>Research</li><li>AARs</li></ul>
           <div class="linkrow"><a href="https://discord.gg/mj5qVEn3a7" target="_blank" rel="noopener">Open Discord</a></div>
         </article>
 
         <article class="eco">
-          <div class="eco-top"><h3>YouTube</h3><span class="chip">Education</span></div>
-          <p>Public videos, public livestreams, playlists, podcasts, and foundational education. Paid livestreams may be unlisted — access those through Patreon.</p>
-          <ul class="tags"><li>Foundations</li><li>Livestreams</li><li>Playlists</li><li>Podcasts</li></ul>
+          <div class="eco-top"><h3>Public learning</h3><span class="chip">Education</span></div>
+          <p>YouTube, Trading 101, and Outlier Insights provide public education and reference material. Paid livestreams may be unlisted — access those through Patreon.</p>
+          <ul class="tags"><li>Foundations</li><li>Trading 101</li><li>Tools</li><li>Writing</li></ul>
           <div class="linkrow">
-            <a href="https://www.youtube.com/@outliertrading" target="_blank" rel="noopener">Channel</a>
-            <a href="https://www.youtube.com/@OutlierTrading/playlists" target="_blank" rel="noopener">Playlists</a>
-            <a href="https://www.youtube.com/@OutlierTrading/streams" target="_blank" rel="noopener">Streams</a>
             <a href="https://www.youtube.com/playlist?list=PLAFDZ3YyC4rRRsiqx8AGfxxLBf_EnHV_t" target="_blank" rel="noopener">Foundations</a>
-          </div>
-        </article>
-
-        <article class="eco">
-          <div class="eco-top"><h3>Website</h3><span class="chip">Tools</span></div>
-          <p>Trading 101, calculators, educational tools, roadmaps, reference pages, the community calendar, and public resources.</p>
-          <ul class="tags"><li>Trading 101</li><li>Calculators</li><li>Roadmaps</li><li>Calendar</li></ul>
-          <div class="linkrow">
             <a href="https://www.outliertrading.io/trading101" target="_blank" rel="noopener">Trading 101</a>
-            <a href="https://www.outliertrading.io" target="_blank" rel="noopener">Site</a>
+            <a href="https://outliertrading.substack.com" target="_blank" rel="noopener">Outlier Insights</a>
           </div>
-        </article>
-
-        <article class="eco">
-          <div class="eco-top"><h3>Substack</h3><span class="chip">Written</span></div>
-          <p><strong>Outlier Insights</strong> — written market commentary, observations, updates, and longer-form analysis.</p>
-          <ul class="tags"><li>Commentary</li><li>Observations</li><li>Long-form</li></ul>
-          <div class="linkrow"><a href="https://substack.com/@outliertrading" target="_blank" rel="noopener">Outlier Insights</a></div>
-        </article>
-
-        <article class="eco">
-          <div class="eco-top"><h3>Trading Pods</h3><span class="chip">Peer groups</span></div>
-          <p>Peer-led trading groups for regular peer connection, idea exchange, and community focus topics. Sign up using the form.</p>
-          <ul class="tags"><li>Peer connection</li><li>Idea exchange</li><li>Focus topics</li></ul>
-          <div class="linkrow"><a href="https://forms.gle/QTWH2eLv9yE6yQQX7" target="_blank" rel="noopener">Pod signup</a></div>
         </article>
       </div>
 
       <div class="backroom">
         <div class="backroom-head">
-          <h3>Inside the Outlier Pro Backroom (Paid Discord Area)</h3>
+          <h3>Inside the paid Discord</h3>
         </div>
         <div class="channels">
           <div class="channel"><strong>Pro Lounge</strong><span>General paid member discussion.</span></div>
@@ -760,14 +756,13 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
         <span class="num">03</span>
         <h2>What your tier includes</h2>
       </div>
-      <p class="section-intro">Benefits are cumulative — each tier contains everything below it. Find your column in the matrix, then scroll down to review your tier in more detail.</p>
+      <p class="section-intro">Benefits are cumulative — each tier contains everything below it. Compare tiers in the matrix on larger screens, then review your tier in detail below.</p>
 
       <div class="table-scroll">
         <table class="matrix">
           <thead>
             <tr>
               <th>Benefit</th>
-              <th>Pro<br>Basics</th>
               <th>Outlier<br>Pro</th>
               <th>Pro<br>Plus</th>
               <th>Coaching</th>
@@ -775,60 +770,34 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
             </tr>
           </thead>
           <tbody>
-            <tr class="group"><th colspan="6">Community and access</th></tr>
-            <tr><th>Private paid Discord</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th>Ask Erik channel</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th>Dedicated private channel</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr class="group"><th colspan="5">Community and access</th></tr>
+            <tr><th>Private paid Discord</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th>Ask Erik channel</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th>Dedicated private channel</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
 
-            <tr class="group"><th colspan="6">Live sessions</th></tr>
-            <tr><th>Weekly Pro livestreams</th><td class="qty">1 wk/mo</td><td class="qty">3 / week</td><td class="qty">3 / week</td><td class="qty">3 / week</td><td class="qty">3 / week</td></tr>
-            <tr><th>Livestream recordings</th><td class="qty">that week</td><td class="yes">Full</td><td class="yes">Full</td><td class="yes">Full</td><td class="yes">Full</td></tr>
-            <tr><th>Interactive Zoom workshops</th><td class="no">—</td><td class="no">—</td><td class="qty">2 / month</td><td class="qty">2 / month</td><td class="qty">2 / month</td></tr>
+            <tr class="group"><th colspan="5">Live sessions</th></tr>
+            <tr><th>Weekly Pro livestreams</th><td class="qty">3 / week</td><td class="qty">3 / week</td><td class="qty">3 / week</td><td class="qty">3 / week</td></tr>
+            <tr><th>Livestream recordings</th><td class="yes">Full</td><td class="yes">Full</td><td class="yes">Full</td><td class="yes">Full</td></tr>
+            <tr><th>Interactive Zoom workshops</th><td class="no">—</td><td class="qty">2 / month</td><td class="qty">2 / month</td><td class="qty">2 / month</td></tr>
 
-            <tr class="group"><th colspan="6">One-to-one</th></tr>
-            <tr><th>Private 60-minute calls</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="qty">1 / month</td><td class="qty">2 / month</td></tr>
-            <tr><th>Customized roadmap</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th>Private collaboration folder</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th>Direct email between sessions</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="qty">Weekly</td><td class="qty">Daily</td></tr>
-            <tr><th>Quarterly guided AAR</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="qty">2 hours</td></tr>
+            <tr class="group"><th colspan="5">One-to-one</th></tr>
+            <tr><th>Private 60-minute calls</th><td class="no">—</td><td class="no">—</td><td class="qty">1 / month</td><td class="qty">2 / month</td></tr>
+            <tr><th>Customized roadmap</th><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th>Private collaboration folder</th><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th>Direct email between sessions</th><td class="no">—</td><td class="no">—</td><td class="qty">Weekly</td><td class="qty">Daily</td></tr>
+            <tr><th>Quarterly guided AAR</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="qty">2 hours</td></tr>
 
-            <tr class="group"><th colspan="6">Resources</th></tr>
-            <tr><th>Tools and templates</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th>Skill-development resources</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th>Patreon collections and archives</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr class="group"><th colspan="5">Resources</th></tr>
+            <tr><th>Tools and templates</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th>Skill-development resources</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th>Patreon collections and archives</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
           </tbody>
         </table>
       </div>
+      <p class="mobile-tier-note">On a phone, review the tier details below. The full comparison table is available on larger screens.</p>
       <p class="matrix-note">Schedules and links are always confirmed in the current Patreon post</p>
 
       <div class="tier-details">
-        <details class="tier">
-          <summary>
-            <span class="tier-name display">Pro Basics</span>
-            <span class="tier-tag">Entry point</span>
-            <span class="tier-plus"></span>
-          </summary>
-          <div class="tier-body">
-            <p class="tier-lead">The entry point to the paid community. Pro Basics gives you the private Discord plus one designated week of Outlier Pro livestreams each month.</p>
-            <p class="sub">Included</p>
-            <ul class="incl">
-              <li>Access to the private paid Discord community</li>
-              <li>One designated week of Outlier Pro livestreams per month</li>
-              <li>Recordings from that designated week</li>
-              <li>Patreon instructions identifying your access week and links</li>
-              <li class="not">Does not include the full weekly Pro livestream schedule every week</li>
-            </ul>
-            <p class="sub">Your first actions</p>
-            <ul class="incl">
-              <li>Complete the universal onboarding steps in Section 01</li>
-              <li>Join Discord and post your introduction</li>
-              <li>Find the Patreon post for your next included livestream week</li>
-              <li>Choose one trading-process problem or learning objective</li>
-              <li>Attend live where possible and use that week's recordings</li>
-            </ul>
-          </div>
-        </details>
-
         <details class="tier" open>
           <summary>
             <span class="tier-name display">Outlier Pro</span>
@@ -836,7 +805,6 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
             <span class="tier-plus"></span>
           </summary>
           <div class="tier-body">
-            <span class="inherit">Everything in Pro Basics</span>
             <p class="tier-lead">The core membership and the complete weekly operating rhythm. Three interactive livestreams per week, full recording access, and the tools and archives behind them.</p>
             <p class="sub">Included</p>
             <ul class="incl">
@@ -994,16 +962,16 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
       </div>
 
       <ul class="checklist" id="checklist">
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Add erik@outliertrading.io to contacts</strong><span>Check Spam and Promotions for Patreon and Outlier Trading mail.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Join the Discord server</strong><span>Use the invite link in Section 01.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Complete verification and post an introduction</strong><span>Use the format provided in the Start Here channel.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Connect Patreon to Discord</strong><span>Must use the same Discord account you joined with.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Confirm your paid Discord role works</strong><span>You should see the Outlier Pro Backroom channels.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Find the latest Patreon schedule</strong><span>The single most important post in the membership.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Identify the livestreams and workshops your tier includes</strong><span>Check the matrix in Section 03 against this week's post.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Locate Patreon Collections and the recording archive</strong><span>So you can find past material without asking.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Begin the Foundations playlist</strong><span>60+ videos, most 10–15 minutes. Start, do not binge.</span></span></label></li>
-        <li><label><input type="checkbox"><span class="box">✓</span><span class="check-body"><strong>Share one current trading goal or roadblock in Discord</strong><span>This is how you start getting useful feedback.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="schedule"><span class="box">✓</span><span class="check-body"><strong>Open the latest Patreon schedule</strong><span>Confirm what is happening this week and which links to use.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="discord-connect"><span class="box">✓</span><span class="check-body"><strong>Connect Discord in Patreon</strong><span>Use Settings → Connected Apps and select the correct Discord account.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="discord-join"><span class="box">✓</span><span class="check-body"><strong>Join the Discord server</strong><span>Join from Patreon or use the invite link in Section 01.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="discord-verify"><span class="box">✓</span><span class="check-body"><strong>Complete verification and post an introduction</strong><span>Use the format provided in the Start Here channel.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="discord-role"><span class="box">✓</span><span class="check-body"><strong>Confirm your paid Discord role works</strong><span>You should see the paid member channels included with your tier.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="email"><span class="box">✓</span><span class="check-body"><strong>Add erik@outliertrading.io to contacts</strong><span>Check Spam and Promotions for Patreon and Outlier Trading mail.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="tier"><span class="box">✓</span><span class="check-body"><strong>Identify what your tier includes</strong><span>Review Section 03 alongside this week's Patreon post.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="collections"><span class="box">✓</span><span class="check-body"><strong>Locate Patreon Collections and recordings</strong><span>Know where to return for past member material.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="foundations"><span class="box">✓</span><span class="check-body"><strong>Begin the Foundations playlist</strong><span>Start with what supports your current objective; do not binge.</span></span></label></li>
+        <li><label><input type="checkbox" data-key="goal"><span class="box">✓</span><span class="check-body"><strong>Share one trading goal or roadblock in Discord</strong><span>This is how you start getting useful feedback.</span></span></label></li>
       </ul>
 
       <div class="callout" style="margin-top:24px">
@@ -1023,7 +991,7 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
       <div class="blocks">
         <article class="block">
           <header><span class="block-key display">A</span><h3>Work through the Foundations playlist</h3></header>
-          <p>The Foundations playlist is 60+ videos, most of them 10–15 minutes. A reasonable pace is around <strong>10 videos per week</strong>. Focus on comprehension and application, not on checking boxes.</p>
+          <p>Use the Foundations playlist to support the objective you are working on now. Focus on comprehension and application, not volume or checking boxes.</p>
           <div class="linkrow"><a href="https://www.youtube.com/playlist?list=PLAFDZ3YyC4rRRsiqx8AGfxxLBf_EnHV_t" target="_blank" rel="noopener">Foundations playlist</a></div>
         </article>
 
@@ -1091,34 +1059,10 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
       </div>
     </section>
 
-    <!-- ══ 06 COMMUNITY ═══════════════════════════ -->
-    <section class="section" id="community">
-      <div class="section-head">
-        <span class="num">06</span>
-        <h2>Getting the most from it</h2>
-      </div>
-      <p class="section-intro">The members who progress fastest all do the same eight things. None of them require more time — only a different approach to the time you are already spending.</p>
-
-      <div class="habits">
-        <div class="habit"><span class="n">01</span><span>Show your work.</span></div>
-        <div class="habit"><span class="n">02</span><span>Ask specific questions.</span></div>
-        <div class="habit"><span class="n">03</span><span>Participate in discussions.</span></div>
-        <div class="habit"><span class="n">04</span><span>Review your decisions honestly.</span></div>
-        <div class="habit"><span class="n">05</span><span>Test ideas before risking meaningful capital.</span></div>
-        <div class="habit"><span class="n">06</span><span>Use templates as starting points, not finished answers.</span></div>
-        <div class="habit"><span class="n">07</span><span>Focus on process rather than isolated outcomes.</span></div>
-        <div class="habit"><span class="n">08</span><span>Ask for direction when you are unsure what to work on next.</span></div>
-      </div>
-
-      <div class="ask-strip">
-        <p>If you are stuck, <em>ask.</em> If you need feedback, <em>ask.</em><br>If you are unsure what to prioritize, <em>ask.</em></p>
-      </div>
-    </section>
-
-    <!-- ══ 07 FAQ ═════════════════════════════════ -->
+    <!-- ══ 06 FAQ ═════════════════════════════════ -->
     <section class="section" id="faq">
       <div class="section-head">
-        <span class="num">07</span>
+        <span class="num">06</span>
         <h2>Common questions</h2>
       </div>
       <p class="section-intro">The questions new members ask most. If yours is not here, ask in Discord — that is what it is for.</p>
@@ -1152,15 +1096,15 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
         </details>
         <details>
           <summary>Which livestreams and workshops does my tier include?</summary>
-          <p>Check the matrix in Section 03 against the current Patreon schedule post. Outlier Pro and above include three weekly livestreams. Pro Basics includes one designated week of Pro livestreams per month, and the Patreon instructions identify which week that is.</p>
+          <p>Check Section 03 alongside the current Patreon schedule post. The tier section defines standard benefits; Patreon confirms the current sessions and access links.</p>
         </details>
         <details>
           <summary>When are the Pro Plus workshops?</summary>
-          <p>The standard rhythm is the first and third Monday at 5:00 PM Pacific, but always confirm against the current Patreon post, which carries the topic, required prep, Zoom link, and instructions. Workshops are small-group working sessions, not passive webinars — they assume a working camera and microphone, a stable connection, live attendance, and active participation.</p>
+          <p>See the Pro Plus details in Section 03 for the standard schedule and participation expectations. Patreon carries the current topic, required preparation, Zoom link, instructions, and any exceptions.</p>
         </details>
         <details>
           <summary>Where are the recordings?</summary>
-          <p>In the Patreon collections and archive. Outlier Pro and above have full access to Pro livestream recordings; Pro Basics has access to recordings from its designated week.</p>
+          <p>In the Patreon collections and archive. Your Patreon membership determines which recordings are available to you.</p>
         </details>
       </div>
 
@@ -1204,29 +1148,17 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
       <p class="sub">Membership</p>
       <div class="acc">
         <details>
-          <summary>Can I share materials or recordings with someone else?</summary>
-          <p>No. All member materials are the intellectual property of Outlier Trading, and redistribution, resale, replication, public sharing, and reposting are prohibited without written permission. Member livestreams, workshops, private discussions, Discord content, coaching sessions, and Inner Circle discussions are confidential — recording, distributing, or publicly summarizing them is prohibited without express permission.</p>
-        </details>
-        <details>
-          <summary>What are the Outlier Trading Pods?</summary>
-          <p>Peer-led trading groups for regular peer connection, idea exchange, and community focus topics. Sign up using the form linked in Section 02 and the directory.</p>
-        </details>
-        <details>
           <summary>How do I cancel my membership?</summary>
           <p>Membership is billed through Patreon, so cancellation is handled in your Patreon account under your membership settings — not in Discord. Your paid access and Discord role remain active through the end of the current billing period, then the paid role is removed automatically.</p>
           <p>If something is not working for you, email <a href="mailto:erik@outliertrading.io">erik@outliertrading.io</a> before you cancel. If a different tier is a better fit, that is usually a faster fix than leaving.</p>
         </details>
-        <details>
-          <summary>Can tiers, schedules, or benefits change?</summary>
-          <p>Yes. Tiers, schedules, features, and benefits may be modified, paused, or discontinued, with reasonable notice when practical. Continuing your membership constitutes agreement with any changes.</p>
-        </details>
       </div>
     </section>
 
-    <!-- ══ 08 POLICIES ════════════════════════════ -->
+    <!-- ══ 07 POLICIES ════════════════════════════ -->
     <section class="section" id="policies">
       <div class="section-head">
-        <span class="num">08</span>
+        <span class="num">07</span>
         <h2>Policies and disclaimer</h2>
       </div>
       <p class="section-intro">Read these once. They govern your membership and the use of everything inside it.</p>
@@ -1262,40 +1194,30 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
     <!-- ══ 08 DIRECTORY ═══════════════════════════ -->
     <section class="section" id="directory">
       <div class="section-head">
-        <span class="num">09</span>
-        <h2>Every link in one place</h2>
+        <span class="num">08</span>
+        <h2>Member quick links</h2>
       </div>
-      <p class="section-intro">Bookmark this section. Everything referenced anywhere on this page is listed below.</p>
+      <p class="section-intro">The recurring member destinations worth bookmarking.</p>
 
       <div class="dir">
-        <div class="dir-group">Start here</div>
-        <a href="https://discord.gg/mj5qVEn3a7" target="_blank" rel="noopener"><strong>Join the Discord server</strong><span>Discord ↗</span></a>
-        <a href="https://discord.com/channels/741540222843486290/741544881515921459" target="_blank" rel="noopener"><strong>Start Here channel</strong><span>Discord ↗</span></a>
+        <div class="dir-group">Access and support</div>
+        <a href="https://www.patreon.com/cw/OutlierTrading" target="_blank" rel="noopener"><strong>Patreon member home</strong><span>Patreon ↗</span></a>
         <a href="https://support.patreon.com/hc/en-us/articles/212052266-Getting-Discord-access" target="_blank" rel="noopener"><strong>Connect Patreon to Discord</strong><span>Guide ↗</span></a>
+        <a href="https://discord.gg/mj5qVEn3a7" target="_blank" rel="noopener"><strong>Join the Discord server</strong><span>Discord ↗</span></a>
+        <a href="https://discord.com/channels/741540222843486290/741544881515921459" target="_blank" rel="noopener"><strong>Start Here channel</strong><span>Server access ↗</span></a>
         <a href="mailto:erik@outliertrading.io"><strong>erik@outliertrading.io</strong><span>Email ✉</span></a>
 
         <div class="dir-group">Patreon — schedules, links, archives</div>
         <a href="https://www.patreon.com/collection/421246?view=expanded" target="_blank" rel="noopener"><strong>Current schedules and livestreams</strong><span>Collection ↗</span></a>
-        <a href="https://www.patreon.com/outliertrading" target="_blank" rel="noopener"><strong>Patreon home</strong><span>Patreon ↗</span></a>
-        <a href="https://www.patreon.com/c/OutlierTrading/collections?vanity=OutlierTrading" target="_blank" rel="noopener"><strong>All collections</strong><span>Patreon ↗</span></a>
+        <a href="https://www.patreon.com/cw/OutlierTrading/collections" target="_blank" rel="noopener"><strong>All collections</strong><span>Patreon ↗</span></a>
         <a href="https://www.patreon.com/collection/1318751?view=expanded" target="_blank" rel="noopener"><strong>Skill development collection</strong><span>Collection ↗</span></a>
 
-        <div class="dir-group">Education</div>
+        <div class="dir-group">Core education</div>
         <a href="https://www.youtube.com/playlist?list=PLAFDZ3YyC4rRRsiqx8AGfxxLBf_EnHV_t" target="_blank" rel="noopener"><strong>Foundations playlist</strong><span>YouTube ↗</span></a>
         <a href="https://youtu.be/utJ76_O6BNI" target="_blank" rel="noopener"><strong>Trading plan guide</strong><span>YouTube ↗</span></a>
-        <a href="https://www.youtube.com/@outliertrading" target="_blank" rel="noopener"><strong>YouTube channel</strong><span>YouTube ↗</span></a>
-        <a href="https://www.youtube.com/@OutlierTrading/playlists" target="_blank" rel="noopener"><strong>All playlists</strong><span>YouTube ↗</span></a>
-        <a href="https://www.youtube.com/@OutlierTrading/streams" target="_blank" rel="noopener"><strong>Livestreams</strong><span>YouTube ↗</span></a>
-        <a href="https://www.youtube.com/@OutlierTrading/podcasts" target="_blank" rel="noopener"><strong>Podcasts</strong><span>YouTube ↗</span></a>
-
-        <div class="dir-group">Tools, writing, and peer groups</div>
-        <a href="https://www.outliertrading.io/trading101" target="_blank" rel="noopener"><strong>Trading 101</strong><span>Website ↗</span></a>
-        <a href="https://www.outliertrading.io" target="_blank" rel="noopener"><strong>outliertrading.io</strong><span>Website ↗</span></a>
-        <a href="https://substack.com/@outliertrading" target="_blank" rel="noopener"><strong>Outlier Insights</strong><span>Substack ↗</span></a>
-        <a href="https://forms.gle/QTWH2eLv9yE6yQQX7" target="_blank" rel="noopener"><strong>Outlier Trading Pods signup</strong><span>Form ↗</span></a>
 
         <div class="dir-group">Community</div>
-        <a class="dir-wide" href="https://discord.com/channels/741540222843486290/1345944037219110922" target="_blank" rel="noopener"><strong>After-Action Review channel</strong><span>Discord ↗</span></a>
+        <a class="dir-wide" href="https://discord.com/channels/741540222843486290/1345944037219110922" target="_blank" rel="noopener"><strong>After-Action Review channel</strong><span>Server access ↗</span></a>
       </div>
     </section>
 
@@ -1312,7 +1234,7 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
     </div>
 
     <div class="legal">
-      <strong>Disclaimer:</strong> All Outlier Trading content and materials are provided for informational and educational purposes only and do not constitute personalized financial, investment, legal, medical, or tax advice. Outlier Trading is not a registered investment adviser, broker-dealer, financial planner, law firm, or accounting firm. Trading and investing involve significant risk, including the possible loss of principal. There is no guarantee of profit, progress, or any specific result, and past performance does not predict future returns. You remain solely responsible for your own decisions and should consult an appropriately licensed professional where needed.
+      <strong>Educational use only.</strong> Trading involves significant risk, and you remain responsible for your own decisions. Review the full <a href="#policies">policies and disclaimer</a> above.
     </div>
 
   </div>
@@ -1362,7 +1284,9 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
 
   function saveProgress() {
     try {
-      localStorage.setItem(STORE, JSON.stringify(boxes.map(function (b) { return b.checked ? 1 : 0; })));
+      var saved = {};
+      boxes.forEach(function (b) { saved[b.dataset.key] = b.checked ? 1 : 0; });
+      localStorage.setItem(STORE, JSON.stringify(saved));
     } catch (e) { /* private mode or storage disabled — progress just won't persist */ }
   }
 
@@ -1371,8 +1295,14 @@ mark { background: rgba(255,215,0,.3); color: var(--paper); padding: 0 2px; }
       var raw = localStorage.getItem(STORE);
       if (!raw) return;
       var saved = JSON.parse(raw);
+      // Preserve progress saved by the original position-based checklist.
       if (Array.isArray(saved) && saved.length === boxes.length) {
-        boxes.forEach(function (b, i) { b.checked = !!saved[i]; });
+        var legacyKeys = ['email', 'discord-join', 'discord-verify', 'discord-connect', 'discord-role', 'schedule', 'tier', 'collections', 'foundations', 'goal'];
+        var legacy = {};
+        legacyKeys.forEach(function (key, i) { legacy[key] = saved[i]; });
+        boxes.forEach(function (b) { b.checked = !!legacy[b.dataset.key]; });
+      } else if (saved && typeof saved === 'object') {
+        boxes.forEach(function (b) { b.checked = !!saved[b.dataset.key]; });
       }
     } catch (e) { /* ignore corrupt or unavailable storage */ }
   }
